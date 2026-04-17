@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Княжий Орден | Премиальный клуб</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-deep: #050c08;
+      --bg-card: rgba(20, 30, 22, 0.75);
+      --gold-primary: #d4af37;
+      --gold-glow: #f5e18b;
+      --gold-dark: #aa7c2c;
+      --emerald: #1e4d2e;
+      --emerald-bright: #2b7a3e;
+      --text-light: #f3f0e6;
+      --text-muted: #c0bba5;
+      --border-gold: rgba(212, 175, 55, 0.4);
+      --shadow-strong: 0 25px 40px -12px rgba(0,0,0,0.6);
+      --glass-blur: blur(12px);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      background-image: 
+        radial-gradient(circle at 25% 40%, rgba(30, 77, 46, 0.2) 0%, transparent 35%),
+        repeating-linear-gradient(45deg, rgba(212,175,55,0.02) 0px, rgba(212,175,55,0.02) 2px, transparent 2px, transparent 8px);
+      font-family: 'Inter', sans-serif;
+      color: var(--text-light);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* кастомный скролл */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a130e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-primary);
+      border-radius: 8px;
+    }
+
+    /* типографика */
+    h1, h2, h3, .hero-title, .detail-title, .card-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    /* Hero — кинематографичный */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,0,0,0.2), var(--bg-deep));
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/black-mamba.png');
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 20%, rgba(212,175,55,0.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-logo {
+      width: 220px;
+      height: auto;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .hero-logo:hover {
+      transform: scale(1.02);
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      background: linear-gradient(135deg, #f9e7b3 0%, var(--gold-primary) 40%, #e9c468 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-top: 1rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .hero-divider {
+      width: 180px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), var(--gold-glow), var(--gold-primary), transparent);
+      margin: 1.2rem auto;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+  color: var(--gold-primary);
+  animation: bounceStrong 1.2s infinite;
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+@keyframes bounceStrong {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+  30% { transform: translateX(-50%) translateY(10px) scale(1.05); }
+  50% { transform: translateX(-50%) translateY(18px) scale(0.98); }
+  70% { transform: translateX(-50%) translateY(8px) scale(1.03); }
+}
+    .scroll-indicator:hover { opacity: 1; }
+
+    @keyframes bounceFloat {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(12px); }
+    }
+
+    /* сетка карточек */
+    .section-grid {
+      max-width: 1300px;
+      margin: 4rem auto;
+      padding: 2rem;
+    }
+
+    .section-label {
+      text-align: center;
+     font-size: 1.2rem; /* было 0.8rem */
+     letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 3rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .section-label i {
+  font-size: 1.6rem; /* было 1rem */
+  opacity: 1;
+  color: var(--gold-primary);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* карточка — премиум стекло + 3D hover */
+    .card {
+      background: rgba(15, 25, 18, 0.65);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border-gold);
+      border-radius: 28px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transform-style: preserve-3d;
+      box-shadow: 0 10px 25px -12px rgba(0,0,0,0.5);
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: var(--gold-primary);
+      box-shadow: 0 30px 40px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.3) inset;
+      background: rgba(20, 32, 22, 0.85);
+    }
+
+    .card-image-wrap {
+      position: relative;
+      padding-top: 100%;
+      overflow: hidden;
+      background: #0f1912;
+    }
+
+    .card-image-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease-out;
+    }
+
+    .card:hover .card-image-wrap img {
+      transform: scale(1.08);
+    }
+
+    .card-number {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(4px);
+      padding: 0.3rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--gold-primary);
+      border: 1px solid rgba(212,175,55,0.5);
+      z-index: 2;
+    }
+
+    .card-body {
+      padding: 1.2rem 1.2rem 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-arrow {
+      font-size: 0.8rem;
+      color: var(--gold-primary);
+      transition: transform 0.3s, opacity 0.3s;
+      display: inline-block;
+      margin-top: 0.5rem;
+      opacity: 0.7;
+    }
+
+    .card:hover .card-arrow {
+      opacity: 1;
+      transform: translateX(6px);
+    }
+
+    /* детальные блоки — элегантные */
+    .section-details {
+      max-width: 1100px;
+      margin: 0 auto 6rem;
+      padding: 2rem;
+    }
+
+    .details-sep {
+      width: 220px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), var(--gold-glow), var(--gold-primary), transparent);
+      margin: 2rem auto 4rem;
+      position: relative;
+    }
+    .details-sep::before, .details-sep::after {
+      content: "✦";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold-primary);
+      background: var(--bg-deep);
+      padding: 0 0.5rem;
+      font-size: 0.9rem;
+    }
+    .details-sep::before { left: -12px; }
+    .details-sep::after { right: -12px; }
+
+    .detail-block {
+      background: rgba(10, 18, 12, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-gold);
+      border-radius: 32px;
+      padding: 2.5rem;
+      margin-bottom: 4rem;
+      transition: all 0.3s;
+      scroll-margin-top: 100px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      scroll-margin-top: 100px;
+    }
+
+    .detail-block:hover {
+      border-color: var(--gold-primary);
+      background: rgba(12, 22, 15, 0.8);
+      box-shadow: 0 25px 45px -12px black;
+    }
+
+    .detail-block::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 15%;
+      bottom: 15%;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--gold-primary), var(--emerald-bright), transparent);
+      border-radius: 4px;
+    }
+
+    .detail-block {
+      position: relative;
+    }
+
+    .detail-num {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--gold-primary);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .detail-title {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      background: linear-gradient(120deg, var(--text-light), var(--gold-glow));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .detail-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) {
+      .detail-content { grid-template-columns: 1fr; }
+      .detail-block { padding: 1.5rem; }
+    }
+
+    .detail-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .detail-text p + p {
+      margin-top: 1rem;
+    }
+
+    .detail-image-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-gold);
+      background: #0c140f;
+      padding-top: 70%;
+      transition: all 0.3s;
+    }
+
+    .detail-image-wrap img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .detail-block:hover .detail-image-wrap img {
+      transform: scale(1.03);
+    }
+
+    /* кнопка наверх */
+    .go-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--gold-primary);
+      color: #0a130e;
+      width: 48px;
+      height: 48px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 99;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border: none;
+    }
+    .go-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    .go-top:hover {
+      background: var(--gold-glow);
+      transform: translateY(-4px);
+    }
+
+    /* анимация появления при скролле (Intersection Observer) */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* адаптивность */
+    @media (max-width: 680px) {
+      .cards-grid { gap: 1.2rem; }
+      .hero-logo { width: 160px; }
+      .section-grid, .section-details { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="mainlogo.png" alt="Княжий Орден герб" class="hero-logo">
+  <h1 class="hero-title">Княжий Орден</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">Ласкаво просимо до спільноти обраних</p>
+  <div class="scroll-indicator">
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</header>
+
+<section class="section-grid">
+  <div class="section-label">
+    <i class="fas fa-crown"></i> 
+    <span>Привілеї клубної карти</span>
+    <i class="fas fa-crown"></i>
+  </div>
+  <div class="cards-grid" id="cardsGrid"></div>
+</section>
+
+<section class="section-details">
+  <div class="details-sep"></div>
+  <div id="detailsContainer"></div>
+</section>
+
+<button class="go-top" id="goTopBtn" aria-label="Наверх">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+  // ==================== ДАННЫЕ ====================
+  const businesses = [
+    { id: 1, name: 'Аптека здоров’я', desc: 'Професійна консультація та оригінальні препарати. Турбота про ваше благополуччя — головний пріоритет ордену.', image: 'apteka.jpg' },
+    { id: 2, name: 'Більярдний клуб', desc: 'Елітний простір для гри в більярд. Ідеальне поєднання аристократизму та спортивного азарту.', image: 'billiard.jpg' },
+    { id: 3, name: 'Дитячий центр', desc: 'Розвиток майбутнього покоління під наглядом найкращих педагогів. Безпека та творчість.', image: 'detski.jpg' },
+    { id: 4, name: 'Електротранспорт', desc: 'Інноваційні рішення для мобільності. Сучасний підхід до пересування містом.', image: 'electro.webp' },
+    { id: 5, name: 'VS10 Barbershop', desc: 'Чоловічий стиль та догляд найвищого ґатунку. Майстерність, що надихає.', image: 'vs10.jpg' },
+    { id: 6, name: 'Готельний комплекс', desc: 'Розкішний відпочинок та гостинність на найвищому рівні. Ідеальне місце для відновлення сил.', image: 'hotel.jpg' },
+    { id: 7, name: 'SPA & Сауна', desc: 'Релакс та відновлення в атмосфері абсолютної гармонії. Паріння за давніми традиціями.', image: 'sauna.jpg' },
+    { id: 8, name: 'Водні атракціони', desc: 'Екстрим та задоволення для всієї родини. Безпека та драйв на найвищому рівні.', image: 'water.jpg' },
+    { id: 9, name: 'Косметологія', desc: 'Догляд, що підкреслює природну красу. Індивідуальні програми від експертів.', image: 'cosmo.jpg' },
+    { id: 10, name: 'Ресторація', desc: 'Гастрономічна подорож із шедеврами світової кухні. Вишукані страви та ідеальний сервіс.', image: 'rest.jpg' },
+    { id: 11, name: 'Головна резиденція', desc: 'Серце ордену, де приймаються доленосні рішення. Символ єдності та сили.', image: 'mainlogo.png' },
+  ];
+
+  const gridContainer = document.getElementById('cardsGrid');
+  const detailsContainer = document.getElementById('detailsContainer');
+
+  // функция плавного скролла с отступом (для кнопки "наверх" и для карточек)
+  function smoothScrollToElement(element) {
+  if (!element) return;
+
+  element.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+}
+
+  // генерация карточек и детальных блоков
+  businesses.forEach(b => {
+    // карточка
+    const card = document.createElement('div');
+    card.className = 'card fade-up';
+    card.innerHTML = `
+      <div class="card-image-wrap">
+        <img src="${b.image}" alt="${b.name}" loading="lazy" onerror="this.src='https://placehold.co/400x400/1a3a22/d4af37?text=Княжий+Орден'">
+        <span class="card-number">${String(b.id).padStart(2, '0')}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${b.name}</div>
+        <div class="card-arrow">Детальніше <i class="fas fa-arrow-right"></i></div>
+      </div>
+    `;
+card.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const target = document.getElementById(`detail-${b.id}`);
+  if (!target) return;
+
+  const offset = 80;
+  const targetY = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+  smoothScrollTo(targetY, 1000);
+});
+
+    gridContainer.appendChild(card);
+
+    // детальный блок
+    const block = document.createElement('div');
+    block.className = 'detail-block fade-up';
+    block.id = `detail-${b.id}`;
+    block.innerHTML = `
+      <div class="detail-num">${String(b.id).padStart(2, '0')} / 11</div>
+      <h2 class="detail-title">${b.name}</h2>
+      <div class="detail-content">
+        <div class="detail-text">
+          <p>${b.desc}</p>
+          <p>Кожен напрямок діє згідно з кодексом честі Княжого Ордену. Наші партнери гарантують бездоганний сервіс, ексклюзивні умови для власників клубної карти та персональний підхід.</p>
+        </div>
+        <div class="detail-image-wrap">
+          <img src="${b.image}" alt="${b.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a3a22/d4af37?text=Орден'">
+        </div>
+      </div>
+    `;
+    detailsContainer.appendChild(block);
+  });
+
+  // ========== Intersection Observer для анимации появления ==========
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+  fadeElements.forEach(el => observer.observe(el));
+
+  // ========== кнопка "наверх" ==========
+  const goTopBtn = document.getElementById('goTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) {
+      goTopBtn.classList.add('visible');
+    } else {
+      goTopBtn.classList.remove('visible');
+    }
+  });
+goTopBtn.addEventListener('click', () => {
+  const section = document.querySelector('.section-grid');
+  if (!section) return;
+
+  const targetY = section.getBoundingClientRect().top + window.pageYOffset - 70;
+
+  smoothScrollTo(targetY, 1000);
+});
+  // дополнительный эффект для индикатора скролла (клик)
+  const scrollHint = document.querySelector('.scroll-indicator');
+
+if (scrollHint) {
+  scrollHint.addEventListener('click', () => {
+    const section = document.querySelector('.section-grid');
+    if (!section) return;
+
+    const targetY = section.getBoundingClientRect().top + window.pageYOffset - 70;
+
+    smoothScrollTo(targetY, 1000);
+  });
+}
+
+  // лёгкий параллакс для hero (необязательно, но красиво)
+  window.addEventListener('mousemove', (e) => {
+    const hero = document.querySelector('.hero');
+    if(!hero) return;
+    const x = (e.clientX / window.innerWidth) * 10;
+    const y = (e.clientY / window.innerHeight) * 10;
+    hero.style.backgroundPosition = `${x}% ${y}%`;
+  });
+
+
+
+function smoothScrollTo(targetY, duration = 900) {
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  let startTime = null;
+
+  // “дорогая” easing-функция (easeInOutCubic)
+  function ease(t) {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+
+    const time = Math.min((timestamp - startTime) / duration, 1);
+    const eased = ease(time);
+
+    window.scrollTo(0, startY + diff * eased);
+
+    if (time < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+
+</script>
+</body>
+</html>
