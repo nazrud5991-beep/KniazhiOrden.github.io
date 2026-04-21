@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Княжий Орден | Премиальный клуб</title>
-  <!-- Google Fonts + Font Awesome 6 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -44,7 +43,6 @@
       overflow-x: hidden;
     }
 
-    /* кастомный скролл */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -56,14 +54,12 @@
       border-radius: 8px;
     }
 
-    /* типографика */
     h1, h2, h3, .hero-title, .detail-title, .card-title {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
       letter-spacing: 0.02em;
     }
 
-    /* Hero — кинематографичный */
     .hero {
       position: relative;
       min-height: 90vh;
@@ -135,31 +131,25 @@
     }
 
     .scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.8rem;
-  color: var(--gold-primary);
-  animation: bounceStrong 1.2s infinite;
-  opacity: 0.85;
-  cursor: pointer;
-}
-
-@keyframes bounceStrong {
-  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
-  30% { transform: translateX(-50%) translateY(10px) scale(1.05); }
-  50% { transform: translateX(-50%) translateY(18px) scale(0.98); }
-  70% { transform: translateX(-50%) translateY(8px) scale(1.03); }
-}
-    .scroll-indicator:hover { opacity: 1; }
-
-    @keyframes bounceFloat {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(12px); }
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.8rem;
+      color: var(--gold-primary);
+      animation: bounceStrong 1.2s infinite;
+      opacity: 0.85;
+      cursor: pointer;
     }
 
-    /* сетка карточек */
+    @keyframes bounceStrong {
+      0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+      30% { transform: translateX(-50%) translateY(10px) scale(1.05); }
+      50% { transform: translateX(-50%) translateY(18px) scale(0.98); }
+      70% { transform: translateX(-50%) translateY(8px) scale(1.03); }
+    }
+    .scroll-indicator:hover { opacity: 1; }
+
     .section-grid {
       max-width: 1300px;
       margin: 4rem auto;
@@ -168,8 +158,8 @@
 
     .section-label {
       text-align: center;
-     font-size: 1.2rem; /* было 0.8rem */
-     letter-spacing: 0.35em;
+      font-size: 1.2rem;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--gold-primary);
       margin-bottom: 3rem;
@@ -180,9 +170,8 @@
       gap: 1rem;
     }
     .section-label i {
-  font-size: 1.6rem; /* было 1rem */
-  opacity: 1;
-  color: var(--gold-primary);
+      font-size: 1.6rem;
+      color: var(--gold-primary);
     }
 
     .cards-grid {
@@ -191,7 +180,6 @@
       gap: 2rem;
     }
 
-    /* карточка — премиум стекло + 3D hover */
     .card {
       background: rgba(15, 25, 18, 0.65);
       backdrop-filter: blur(6px);
@@ -274,7 +262,6 @@
       transform: translateX(6px);
     }
 
-    /* детальные блоки — элегантные */
     .section-details {
       max-width: 1100px;
       margin: 0 auto 6rem;
@@ -311,7 +298,6 @@
       transition: all 0.3s;
       scroll-margin-top: 100px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-      scroll-margin-top: 100px;
     }
 
     .detail-block:hover {
@@ -355,8 +341,8 @@
 
     .detail-content {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
       align-items: center;
     }
 
@@ -369,9 +355,12 @@
       font-size: 1rem;
       line-height: 1.7;
       color: var(--text-muted);
+      max-width: 520px;
     }
+
     .detail-text p + p {
-      margin-top: 1rem;
+      margin-bottom: 0.6rem;
+      color: var(--text-muted);
     }
 
     .detail-image-wrap {
@@ -398,7 +387,91 @@
       transform: scale(1.03);
     }
 
-    /* кнопка наверх */
+    /* Стилі для каруселі аптеки */
+    .pharmacy-slider {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #0c140f;
+      border: 1px solid var(--border-gold);
+    }
+    .slider-images {
+      position: relative;
+      padding-top: 70%;
+    }
+    .slider-images img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.6);
+      color: var(--gold-primary);
+      border: 1px solid rgba(212,175,55,0.6);
+      font-size: 1.8rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
+    }
+    .slider-btn:hover {
+      background: var(--gold-primary);
+      color: #0a130e;
+      border-color: var(--gold-glow);
+    }
+    .slider-prev { left: 10px; }
+    .slider-next { right: 10px; }
+    .slider-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: var(--text-light);
+      padding: 1rem;
+      font-size: 0.9rem;
+      text-align: center;
+      font-weight: 500;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .slider-caption span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--gold-primary);
+    }
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dot.active {
+      background: var(--gold-primary);
+      transform: scale(1.3);
+    }
+
     .go-top {
       position: fixed;
       bottom: 2rem;
@@ -429,7 +502,6 @@
       transform: translateY(-4px);
     }
 
-    /* анимация появления при скролле (Intersection Observer) */
     .fade-up {
       opacity: 0;
       transform: translateY(35px);
@@ -440,11 +512,15 @@
       transform: translateY(0);
     }
 
-    /* адаптивность */
     @media (max-width: 680px) {
       .cards-grid { gap: 1.2rem; }
       .hero-logo { width: 160px; }
       .section-grid, .section-details { padding: 1rem; }
+      .slider-btn { width: 32px; height: 32px; font-size: 1.2rem; }
+    }
+
+    .detail-text .label:has(+ .benefits) {
+      margin-top: 1.8rem;
     }
   </style>
 </head>
@@ -463,7 +539,7 @@
 <section class="section-grid">
   <div class="section-label">
     <i class="fas fa-crown"></i> 
-    <span>Привілеї клубної карти</span>
+    <span>ПОДАРУНКИ І КЕШБЕК КЛУБНОЇ КАРТИ</span>
     <i class="fas fa-crown"></i>
   </div>
   <div class="cards-grid" id="cardsGrid"></div>
@@ -479,37 +555,58 @@
 </button>
 
 <script>
-  // ==================== ДАННЫЕ ====================
+  // Дані для аптеки: масив фото, назв та адрес
+  const pharmacyMedia = [
+    { img: 'apteka2.jpg', caption: 'Аптека - Масани', address: 'вул. Незалежності, 46, Чернігів' },
+    { img: 'apteka1.jpg', caption: 'Аптека - Еськова', address: 'вул. Еськова, 10, Чернігів' },
+    { img: 'apteka4.jpg', caption: 'Аптека - Пологовий будинок', address: 'Перший поверх' },
+    { img: 'apteka5.jpg', caption: 'Аптека - Сімейна Поліклініка', address: 'Перший поверх' },
+    { img: 'apteka3.jpg', caption: 'Аптека - Міська лікарня №3 (ЧРПЗ)', address: 'Перший поверх' },
+    { img: 'apteka6.jpg', caption: 'Аптека - Міська лікарня №1', address: 'Перший поверх' },
+  ];
+
+const restaurantMedia = [
+  { img: 'rest.jpg', caption: 'Червоний Зал', address: 'Ресторація "Княжий Орден"' },
+  { img: 'rest1.jpg', caption: 'Блакитний зал', address: 'Другий поверх' },
+
+];
+
   const businesses = [
-    { id: 1, name: 'Аптека здоров’я', desc: 'Професійна консультація та оригінальні препарати. Турбота про ваше благополуччя — головний пріоритет ордену.', image: 'apteka.jpg' },
-    { id: 2, name: 'Більярдний клуб', desc: 'Елітний простір для гри в більярд. Ідеальне поєднання аристократизму та спортивного азарту.', image: 'billiard.jpg' },
-    { id: 3, name: 'Дитячий центр', desc: 'Розвиток майбутнього покоління під наглядом найкращих педагогів. Безпека та творчість.', image: 'detski.jpg' },
-    { id: 4, name: 'Електротранспорт', desc: 'Інноваційні рішення для мобільності. Сучасний підхід до пересування містом.', image: 'electro.webp' },
-    { id: 5, name: 'VS10 Barbershop', desc: 'Чоловічий стиль та догляд найвищого ґатунку. Майстерність, що надихає.', image: 'vs10.jpg' },
-    { id: 6, name: 'Готельний комплекс', desc: 'Розкішний відпочинок та гостинність на найвищому рівні. Ідеальне місце для відновлення сил.', image: 'hotel.jpg' },
-    { id: 7, name: 'SPA & Сауна', desc: 'Релакс та відновлення в атмосфері абсолютної гармонії. Паріння за давніми традиціями.', image: 'sauna.jpg' },
-    { id: 8, name: 'Водні атракціони', desc: 'Екстрим та задоволення для всієї родини. Безпека та драйв на найвищому рівні.', image: 'water.jpg' },
-    { id: 9, name: 'Косметологія', desc: 'Догляд, що підкреслює природну красу. Індивідуальні програми від експертів.', image: 'cosmo.jpg' },
-    { id: 10, name: 'Ресторація', desc: 'Гастрономічна подорож із шедеврами світової кухні. Вишукані страви та ідеальний сервіс.', image: 'rest.jpg' },
-    { id: 11, name: 'Головна резиденція', desc: 'Серце ордену, де приймаються доленосні рішення. Символ єдності та сили.', image: 'mainlogo.png' },
+    { id: 1, name: 'Аптека Маркет', desc: 'Якщо у вас активна клубна карта в аптеках Ви отримуєте кешбек 1% ', image: 'apteka.jpg' },
+    { id: 2, name: 'Більярдний клуб', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Безкоштовна 1 година гри у більярд', image: 'billiard.jpg' },
+    { id: 3, name: 'Дитячий магазин', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Кешбек 10% на покупки', image: 'detski.jpg' },
+    { id: 4, name: 'Зарядка для електромобілів', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Ми надаємо можливість зарядити ваш автомобіль на 10 кВт безкоштовно.', image: 'electro.webp' },
+    { id: 5, name: 'Victoria Secret', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Кешбек 10% на покупки', image: 'vs10.jpg' },
+    { id: 6, name: 'Готельний номер', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). МИ надаємо можливість прожити 1 добу безкоштовно з сніданком. В іншоому випадку 1700 грн за добу зі сніданком.', image: 'hotel.jpg' },
+    { id: 7, name: 'SPA & Сауна', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Ми надаємо можливість скористуватися сауною 1 годину безкоштовно', image: 'sauna.jpg' },
+    { id: 8, name: 'Водні атракціони', desc: '100% ПРИРОДНІЙ СКЛАД; ПРОХОДИТЬ ОЧИЩЕННЯ НА ПРОФЕСІЙНОМУ ОБЛАДНЕННІ БЕЗ ЗВОРОТНЬОГО ОСМОСУ', image: 'water.jpg' },
+    { id: 9, name: 'Косметологія', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Безкоштовна процедура шкіри обличчя. Знижка на професійну косметику 10%. Кешбек 10%', image: 'cosmo.jpg' },
+    { id: 10, name: 'Ресторація', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Кешбек 10%. 1 безкоштовне відвідування ресторану згідно меню. ', image: 'rest.jpg' },
+   
   ];
 
   const gridContainer = document.getElementById('cardsGrid');
   const detailsContainer = document.getElementById('detailsContainer');
 
-  // функция плавного скролла с отступом (для кнопки "наверх" и для карточек)
-  function smoothScrollToElement(element) {
-  if (!element) return;
+  function smoothScrollTo(targetY, duration = 900) {
+    const startY = window.scrollY;
+    const diff = targetY - startY;
+    let startTime = null;
+    function ease(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const time = Math.min((timestamp - startTime) / duration, 1);
+      const eased = ease(time);
+      window.scrollTo(0, startY + diff * eased);
+      if (time < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
 
-  element.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
-}
-
-  // генерация карточек и детальных блоков
+  // генерація карток
   businesses.forEach(b => {
-    // карточка
     const card = document.createElement('div');
     card.className = 'card fade-up';
     card.innerHTML = `
@@ -522,41 +619,142 @@
         <div class="card-arrow">Детальніше <i class="fas fa-arrow-right"></i></div>
       </div>
     `;
-card.addEventListener('click', (e) => {
-  e.preventDefault();
-
-  const target = document.getElementById(`detail-${b.id}`);
-  if (!target) return;
-
-  const offset = 80;
-  const targetY = target.getBoundingClientRect().top + window.pageYOffset - offset;
-
-  smoothScrollTo(targetY, 1000);
-});
-
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById(`detail-${b.id}`);
+      if (!target) return;
+      const targetY = target.getBoundingClientRect().top + window.pageYOffset - 80;
+      smoothScrollTo(targetY, 1000);
+    });
     gridContainer.appendChild(card);
-
-    // детальный блок
-    const block = document.createElement('div');
-    block.className = 'detail-block fade-up';
-    block.id = `detail-${b.id}`;
-    block.innerHTML = `
-      <div class="detail-num">${String(b.id).padStart(2, '0')} / 11</div>
-      <h2 class="detail-title">${b.name}</h2>
-      <div class="detail-content">
-        <div class="detail-text">
-          <p>${b.desc}</p>
-          <p>Кожен напрямок діє згідно з кодексом честі Княжого Ордену. Наші партнери гарантують бездоганний сервіс, ексклюзивні умови для власників клубної карти та персональний підхід.</p>
-        </div>
-        <div class="detail-image-wrap">
-          <img src="${b.image}" alt="${b.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a3a22/d4af37?text=Орден'">
-        </div>
-      </div>
-    `;
-    detailsContainer.appendChild(block);
   });
 
-  // ========== Intersection Observer для анимации появления ==========
+  // генерація детальних блоків
+// генерація детальних блоків
+// Генерація детальних блоків
+businesses.forEach(b => {
+  const block = document.createElement('div');
+  block.className = 'detail-block fade-up';
+  block.id = `detail-${b.id}`;
+
+  // Спільна розмітка тексту для всіх блоків
+  const textContent = `
+    <div class="detail-text">
+      <div class="label" style="color: var(--text-muted); margin-bottom: 1rem;">Умова:</div>
+      <p class="main-text" style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        Активна клубна карта - регулярні розрахунки протягом року
+      </p>
+      
+      <div class="label" style="color: var(--text-muted); margin-bottom: 1rem;">Вигода:</div>
+      
+      <ul class="benefits" style="list-style: none; padding-left: 0;">
+        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; color: var(--text-muted);">
+          <span style="position: absolute; left: 0; color: var(--gold-primary);">•</span>
+          ${b.desc}
+        </li>
+        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; color: var(--text-muted);">
+          <span style="position: absolute; left: 0; color: var(--gold-primary);">•</span>
+          Ексклюзивні умови для учасників
+        </li>
+        <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; color: var(--text-muted);">
+          <span style="position: absolute; left: 0; color: var(--gold-primary);">•</span>
+          Персональний сервіс
+        </li>
+      </ul>
+    </div>
+  `;
+
+  if (b.id === 1 || b.id === 10) {
+    const isPharmacy = b.id === 1;
+    const mediaSet = isPharmacy ? pharmacyMedia : restaurantMedia;
+    const sliderId = isPharmacy ? 'pharmacy' : 'restaurant';
+
+    block.innerHTML = `
+        <div class="detail-num">${String(b.id).padStart(2, '0')} / 10</div>
+        <h2 class="detail-title">${b.name}</h2>
+        <div class="detail-content">
+          ${textContent}
+          <div class="pharmacy-slider" data-slider-id="${sliderId}">
+            <div class="slider-images">
+              ${mediaSet.map((item, idx) => `<img src="${item.img}" alt="${item.caption}" data-index="${idx}" style="opacity: ${idx === 0 ? '1' : '0'}; transition: opacity 0.4s ease;">`).join('')}
+            </div>
+            <div class="slider-btn slider-prev"><i class="fas fa-chevron-left"></i></div>
+            <div class="slider-btn slider-next"><i class="fas fa-chevron-right"></i></div>
+            <div class="slider-caption">
+              <strong>${mediaSet[0].caption}</strong><br>
+              <span>${mediaSet[0].address}</span>
+            </div>
+          </div>
+        </div>
+        <div class="slider-dots" style="margin-top: 12px; text-align: center;">
+          ${mediaSet.map((_, idx) => `<div class="dot ${idx === 0 ? 'active' : ''}" data-dot-index="${idx}" data-for-slider="${sliderId}"></div>`).join('')}
+        </div>
+      `;
+  } else {
+    block.innerHTML = `
+        <div class="detail-num">${String(b.id).padStart(2, '0')} / 10</div>
+        <h2 class="detail-title">${b.name}</h2>
+        <div class="detail-content">
+          ${textContent}
+          <div class="detail-image-wrap">
+            <img src="${b.image}" alt="${b.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a3a22/d4af37?text=Орден'">
+          </div>
+        </div>
+      `;
+  }
+  detailsContainer.appendChild(block);
+});
+  // Ініціалізація каруселі для аптеки
+function initAllSliders() {
+  const sliders = document.querySelectorAll('.pharmacy-slider');
+  
+  sliders.forEach(sliderContainer => {
+    const sliderId = sliderContainer.getAttribute('data-slider-id');
+    const mediaSet = sliderId === 'pharmacy' ? pharmacyMedia : restaurantMedia;
+    
+    const images = sliderContainer.querySelectorAll('.slider-images img');
+    const prevBtn = sliderContainer.querySelector('.slider-prev');
+    const nextBtn = sliderContainer.querySelector('.slider-next');
+    const captionDiv = sliderContainer.querySelector('.slider-caption');
+    const dots = sliderContainer.parentElement.querySelectorAll(`.dot[data-for-slider="${sliderId}"]`);
+    
+    let currentIndex = 0;
+
+    function updateSlider(index) {
+      images.forEach((img, i) => {
+        img.style.opacity = i === index ? '1' : '0';
+      });
+      if (captionDiv && mediaSet[index]) {
+        captionDiv.innerHTML = `<strong>${mediaSet[index].caption}</strong><br><span>${mediaSet[index].address}</span>`;
+      }
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    nextBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlider(currentIndex);
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateSlider(currentIndex);
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        currentIndex = idx;
+        updateSlider(currentIndex);
+      });
+    });
+  });
+}
+
+// Запуск ініціалізації
+setTimeout(initAllSliders, 150);
+
+  // Intersection Observer для анімації
   const fadeElements = document.querySelectorAll('.fade-up');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -568,77 +766,60 @@ card.addEventListener('click', (e) => {
   }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
   fadeElements.forEach(el => observer.observe(el));
 
-  // ========== кнопка "наверх" ==========
+  // Кнопка вгору
   const goTopBtn = document.getElementById('goTopBtn');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 600) {
-      goTopBtn.classList.add('visible');
-    } else {
-      goTopBtn.classList.remove('visible');
+    if (window.scrollY > 600) goTopBtn.classList.add('visible');
+    else goTopBtn.classList.remove('visible');
+  });
+  goTopBtn.addEventListener('click', () => {
+    const section = document.querySelector('.section-grid');
+    if (section) {
+      const targetY = section.getBoundingClientRect().top + window.pageYOffset - 70;
+      smoothScrollTo(targetY, 1000);
     }
   });
-goTopBtn.addEventListener('click', () => {
-  const section = document.querySelector('.section-grid');
-  if (!section) return;
 
-  const targetY = section.getBoundingClientRect().top + window.pageYOffset - 70;
-
-  smoothScrollTo(targetY, 1000);
-});
-  // дополнительный эффект для индикатора скролла (клик)
   const scrollHint = document.querySelector('.scroll-indicator');
+  if (scrollHint) {
+    scrollHint.addEventListener('click', () => {
+      const section = document.querySelector('.section-grid');
+      if (section) {
+        const targetY = section.getBoundingClientRect().top + window.pageYOffset - 70;
+        smoothScrollTo(targetY, 1000);
+      }
+    });
+  }
 
-if (scrollHint) {
-  scrollHint.addEventListener('click', () => {
-    const section = document.querySelector('.section-grid');
-    if (!section) return;
-
-    const targetY = section.getBoundingClientRect().top + window.pageYOffset - 70;
-
-    smoothScrollTo(targetY, 1000);
-  });
-}
-
-  // лёгкий параллакс для hero (необязательно, но красиво)
   window.addEventListener('mousemove', (e) => {
     const hero = document.querySelector('.hero');
-    if(!hero) return;
-    const x = (e.clientX / window.innerWidth) * 10;
-    const y = (e.clientY / window.innerHeight) * 10;
-    hero.style.backgroundPosition = `${x}% ${y}%`;
-  });
-
-
-
-function smoothScrollTo(targetY, duration = 900) {
-  const startY = window.scrollY;
-  const diff = targetY - startY;
-  let startTime = null;
-
-  // “дорогая” easing-функция (easeInOutCubic)
-  function ease(t) {
-    return t < 0.5
-      ? 4 * t * t * t
-      : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-
-  function step(timestamp) {
-    if (!startTime) startTime = timestamp;
-
-    const time = Math.min((timestamp - startTime) / duration, 1);
-    const eased = ease(time);
-
-    window.scrollTo(0, startY + diff * eased);
-
-    if (time < 1) {
-      requestAnimationFrame(step);
+    if(hero) {
+      const x = (e.clientX / window.innerWidth) * 10;
+      const y = (e.clientY / window.innerHeight) * 10;
+      hero.style.backgroundPosition = `${x}% ${y}%`;
     }
-  }
-
-  requestAnimationFrame(step);
-}
-
-
+  });
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
