@@ -579,10 +579,11 @@ const restaurantMedia = [
     { id: 5, name: 'Victoria Secret', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Кешбек 10% на покупки', image: 'vs10.jpg' },
     { id: 6, name: 'Готельний номер', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). МИ надаємо можливість прожити 1 добу безкоштовно з сніданком. В іншоому випадку 1700 грн за добу зі сніданком.', image: 'hotel.jpg' },
     { id: 7, name: 'SPA & Сауна', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Ми надаємо можливість скористуватися сауною 1 годину безкоштовно', image: 'sauna.jpg' },
-    { id: 8, name: 'Жива Вода', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). 100% ПРИРОДНІЙ СКЛАД; ПРОХОДИТЬ ОЧИЩЕННЯ НА ПРОФЕСІЙНОМУ ОБЛАДНЕННІ БЕЗ ЗВОРОТНЬОГО ОСМОСУ. При купілві на 50грн(безкоштовно 5 літрів води), При купівлі на 100грн(безкоштовно 10 літрів води) і так далі', image: 'water.jpg' },
+    { id: 8, name: 'Водні атракціони', desc: '100% ПРИРОДНІЙ СКЛАД; ПРОХОДИТЬ ОЧИЩЕННЯ НА ПРОФЕСІЙНОМУ ОБЛАДНЕННІ БЕЗ ЗВОРОТНЬОГО ОСМОСУ', image: 'water.jpg' },
     { id: 9, name: 'Косметологія', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Безкоштовна процедура шкіри обличчя. Знижка на професійну косметику 10%. Кешбек 10%', image: 'cosmo.jpg' },
     { id: 10, name: 'Ресторація', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Кешбек 10%. 1 безкоштовне відвідування ресторану згідно меню. ', image: 'rest.jpg' },
     { id: 11, name: 'Автомобільна стоянка під охороною', desc: 'Якщо у вас активна клубна карта в аптеках (розрахунки кожного місяця на протязі року за товари та послуги). Ви отримуєете можливість користуватися стоянкою 1 місяць на рік безкоштовно ', image: 'park.jpg' },
+ 
   ];
 
   const gridContainer = document.getElementById('cardsGrid');
@@ -637,13 +638,16 @@ businesses.forEach(b => {
   block.className = 'detail-block fade-up';
   block.id = `detail-${b.id}`;
 
+  // Спільна розмітка тексту для всіх блоків
   const textContent = `
     <div class="detail-text">
       <div class="label" style="color: var(--text-muted); margin-bottom: 1rem;">Умова:</div>
       <p class="main-text" style="color: var(--text-muted); margin-bottom: 1.5rem;">
         Активна клубна карта - регулярні розрахунки протягом року
       </p>
+      
       <div class="label" style="color: var(--text-muted); margin-bottom: 1rem;">Вигода:</div>
+      
       <ul class="benefits" style="list-style: none; padding-left: 0;">
         <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; color: var(--text-muted);">
           <span style="position: absolute; left: 0; color: var(--gold-primary);">•</span>
@@ -651,18 +655,15 @@ businesses.forEach(b => {
         </li>
         <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; color: var(--text-muted);">
           <span style="position: absolute; left: 0; color: var(--gold-primary);">•</span>
-          Ви отримуєете можливість користуватися стоянкою 1 місяць на протязі року безкоштовно
+          Ексклюзивні умови для учасників
         </li>
         <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; color: var(--text-muted);">
           <span style="position: absolute; left: 0; color: var(--gold-primary);">•</span>
-          Ексклюзивні умови для учасників
+          Персональний сервіс
         </li>
       </ul>
     </div>
   `;
-
-  // Тут ми автоматично рахуємо кількість елементів (щоб було / 11)
-  const totalCount = businesses.length;
 
   if (b.id === 1 || b.id === 10) {
     const isPharmacy = b.id === 1;
@@ -670,7 +671,7 @@ businesses.forEach(b => {
     const sliderId = isPharmacy ? 'pharmacy' : 'restaurant';
 
     block.innerHTML = `
-        <div class="detail-num">${String(b.id).padStart(2, '0')} / ${totalCount}</div>
+        <div class="detail-num">${String(b.id).padStart(2, '0')} / 10</div>
         <h2 class="detail-title">${b.name}</h2>
         <div class="detail-content">
           ${textContent}
@@ -692,7 +693,7 @@ businesses.forEach(b => {
       `;
   } else {
     block.innerHTML = `
-        <div class="detail-num">${String(b.id).padStart(2, '0')} / ${totalCount}</div>
+        <div class="detail-num">${String(b.id).padStart(2, '0')} / 10</div>
         <h2 class="detail-title">${b.name}</h2>
         <div class="detail-content">
           ${textContent}
@@ -802,6 +803,18 @@ setTimeout(initAllSliders, 150);
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
