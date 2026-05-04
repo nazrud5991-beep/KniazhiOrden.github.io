@@ -637,16 +637,13 @@ businesses.forEach(b => {
   block.className = 'detail-block fade-up';
   block.id = `detail-${b.id}`;
 
-  // Спільна розмітка тексту для всіх блоків
   const textContent = `
     <div class="detail-text">
       <div class="label" style="color: var(--text-muted); margin-bottom: 1rem;">Умова:</div>
       <p class="main-text" style="color: var(--text-muted); margin-bottom: 1.5rem;">
         Активна клубна карта - регулярні розрахунки протягом року
       </p>
-      
       <div class="label" style="color: var(--text-muted); margin-bottom: 1rem;">Вигода:</div>
-      
       <ul class="benefits" style="list-style: none; padding-left: 0;">
         <li style="margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; color: var(--text-muted);">
           <span style="position: absolute; left: 0; color: var(--gold-primary);">•</span>
@@ -664,13 +661,16 @@ businesses.forEach(b => {
     </div>
   `;
 
+  // Тут ми автоматично рахуємо кількість елементів (щоб було / 11)
+  const totalCount = businesses.length;
+
   if (b.id === 1 || b.id === 10) {
     const isPharmacy = b.id === 1;
     const mediaSet = isPharmacy ? pharmacyMedia : restaurantMedia;
     const sliderId = isPharmacy ? 'pharmacy' : 'restaurant';
 
     block.innerHTML = `
-        <div class="detail-num">${String(b.id).padStart(2, '0')} / 10</div>
+        <div class="detail-num">${String(b.id).padStart(2, '0')} / ${totalCount}</div>
         <h2 class="detail-title">${b.name}</h2>
         <div class="detail-content">
           ${textContent}
@@ -692,7 +692,7 @@ businesses.forEach(b => {
       `;
   } else {
     block.innerHTML = `
-        <div class="detail-num">${String(b.id).padStart(2, '0')} / 10</div>
+        <div class="detail-num">${String(b.id).padStart(2, '0')} / ${totalCount}</div>
         <h2 class="detail-title">${b.name}</h2>
         <div class="detail-content">
           ${textContent}
